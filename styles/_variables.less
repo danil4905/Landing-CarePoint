@@ -1,0 +1,120 @@
+@font-face {
+  font-family: "Open Sans Regular";
+  src: url(../fonts/OpenSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Open Sans Bold";
+  src: url(../fonts/OpenSans-Bold.ttf);
+}
+
+@font-face {
+  font-family: "Montserrat Regular";
+  src: url(../fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Montserrat Medium";
+  src: url(../fonts/Montserrat-Medium.ttf);
+}
+
+@font-face {
+  font-family: "Montserrat Bold";
+  src: url(../fonts/Montserrat-Bold.ttf);
+}
+
+@textFont: "Open Sans Regular", sans-serif;
+@textFontBold: "Open Sans Bold", sans-serif;
+@textColor: #6a6a6a;
+
+@headerFont: "Montserrat Regular", sans-serif;
+@headerFontMedium: "Montserrat Medium", sans-serif;
+@headerFontBold: "Montserrat Bold", sans-serif;
+@headerColor: #6c6c6c;
+@headerHoverColor: #262626;
+@headerMediumColor: #474747;
+
+@iconsColor: #191919;
+
+@lightColor: #fff;
+
+@standartPadding: 20px;
+@standartGap: 20px;
+
+.respondTo(@device, @content) {
+  & when (@device = phones) {
+    @media all and (max-width: 479px) { @content(); }
+  }
+  & when (@device = wide-phones) {
+    @media all and (min-width: 480px) and (max-width: 767px) { @content(); }
+  }
+  & when (@device = tablets) {
+    @media all and (min-width: 768px) and (max-width: 991px) { @content(); }
+  }
+  & when (@device = small-desktops) {
+    @media all and (min-width: 992px) and (max-width: 1199px) { @content(); }
+  }
+  & when (@device = lg-desktops) {
+    @media all and (min-width: 1200px) and (max-width: 1440px) { @content(); }
+  }
+  & when (@device = xlg-desktops) {
+    @media all and (min-width: 1441px) and (max-width: 1920px) { @content(); }
+  }
+}
+
+.customRespond(@minWidth, @maxWidth, @content) {
+  @media all and (min-width: @minWidth) and (max-width: @maxWidth) { @content(); }
+}
+
+.insideWrapMixin {
+  width: 1200px;
+  margin: 0 auto;
+
+  .customRespond(0, (1200px + @standartPadding*2) - 1, {
+    width: 100%;
+    margin: 0 0;
+  });
+}
+
+.buttonMixin {
+  background-color: #1a9bdc;
+  box-shadow: -4px 11px 40px 0 rgba(0, 1, 1, 0.2);
+  width: 166px;
+  height: 47px;
+  border: none;
+  border-radius: 30px;
+  color: @lightColor;
+  text-transform: uppercase;
+  font-family: @headerFont;
+  font-size: 18.25px;
+  transition-duration: 1s;
+
+  &:hover {
+    background-color: #37c3a8;
+    cursor: pointer;
+    transform: scale(1.1, 1.1);
+  }
+}
+
+.heartTreatmentMixin(@bgColor, @textColor) {
+  width: 100%;
+  height: 54px;
+  line-height: 54px;
+  color: @textColor;
+  font-size: 20px;
+  font-family: @headerFontMedium;
+  border-radius: 30px;
+  padding-left: 60px;
+  box-sizing: border-box;
+  background: url(../images/heartPoint.png) no-repeat 10px center;
+  background-color: @bgColor;
+}
+
+.gradientMixin() {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#43b1d2+0,37c3a8+100 */
+  background: rgb(67,177,210); /* Old browsers */
+  background: -moz-linear-gradient(left, rgba(67,177,210,1) 0%, rgba(55,195,168,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(67,177,210,1) 0%,rgba(55,195,168,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(67,177,210,1) 0%,rgba(55,195,168,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#43b1d2', endColorstr='#37c3a8',GradientType=1 ); /* IE6-9 */
+}
